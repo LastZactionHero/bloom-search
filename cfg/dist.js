@@ -21,6 +21,9 @@ let config = Object.assign({}, baseConfig, {
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
     }),
+    new webpack.DefinePlugin({
+      API_HOST: JSON.stringify('http://fleur-api.develop.vodka')
+    }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),

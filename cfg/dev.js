@@ -21,7 +21,10 @@ let config = Object.assign({}, baseConfig, {
     new webpack.NoErrorsPlugin(),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
-    })
+    }),
+    new webpack.DefinePlugin({
+     API_HOST: JSON.stringify('http://dev-fleur-search.develop.vodka:3000')
+   })
   ],
   module: defaultSettings.getDefaultModules()
 });

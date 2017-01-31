@@ -22,3 +22,8 @@ body {
 .results-table {
   font-size: 12px;
 }
+
+input.dimension-range {
+  width: 80px;
+  display: inline-block;
+}

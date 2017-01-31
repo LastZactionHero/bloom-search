@@ -14,28 +14,19 @@ import UsagesSelector from './search_form/UsagesSelector';
 import GardenStylesSelector from './search_form/GardenStylesSelector';
 import FlowerAttributesSelector from './search_form/FlowerAttributesSelector';
 import PlantTypeSelector from './search_form/PlantTypeSelector';
+import HeightRangeSelector from './search_form/HeightRangeSelector';
+import WidthRangeSelector from './search_form/WidthRangeSelector';
 
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = SearchStore.getState();
     SearchActions.fetchOptions();
-
-    this.triggerChangeCommonName = null;
   }
 
   handleCommonNameChange(event) {
-    if(this.triggerChangeCommonName){
-      clearTimeout(this.triggerChangeCommonName);
-    }
-
     let commonName = event.target.value;
-
-    this.triggerChangeCommonName = setTimeout( () => {
-      this.triggerChangeCommonName = null;
-      SearchActions.updateQuery('common_name', commonName);
-    }, 500);
-
+    SearchActions.updateQuery('common_name', commonName);
   }
 
   render() {
@@ -48,6 +39,8 @@ class SearchForm extends React.Component {
             className='form-control'
             onChange={this.handleCommonNameChange.bind(this)}/>
         </div>
+        <HeightRangeSelector />
+        <WidthRangeSelector />
         <PlantTypeSelector />
         <FoliageColorsSelector />
         <FlowerAttributesSelector />

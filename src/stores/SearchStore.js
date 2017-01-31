@@ -15,6 +15,8 @@ class SeachStore {
     this.pageIdx = 0;
     this.query = {
       common_name: '',
+      height: {min: null, max: null},
+      width: {min: null, max: null},
       leave_types: [],
       growth_rates: [],
       flower_colors: [],
@@ -32,6 +34,7 @@ class SeachStore {
       meta: {page_idx: 0, total: 0, total_pages: 0},
       plants: []
     };
+    this.queryTimeout = null;
   }
 
   handleUpdateOptions(options) {
@@ -55,10 +58,30 @@ class SeachStore {
       }
     } else if(update.key == 'common_name') {
       this.query.common_name = update.values;
+    } else if(update.key == 'height_max') {
+      let dimension = parseInt(update.values);
+      this.query.height.max = dimension == NaN ? null : dimension;
+    } else if(update.key == 'height_min') {
+      let dimension = parseInt(update.values);
+      this.query.height.min = dimension == NaN ? null : dimension;
+    } else if(update.key == 'width_max') {
+      let dimension = parseInt(update.values);
+      this.query.width.max = dimension == NaN ? null : dimension;
+    } else if(update.key == 'width_min') {
+      let dimension = parseInt(update.values);
+      this.query.width.min = dimension == NaN ? null : dimension;
     }
     this.pageIdx = 0;
 
-    setTimeout(() => {SearchActions.fetchResults(this.query, this.pageIdx)});
+    if(this.queryTimeout){
+      clearTimeout(this.queryTimeout);
+    }
+
+    this.queryTimeout = null;
+    this.queryTimeout = setTimeout(() => {
+      this.queryTimeout = null;
+      SearchActions.fetchResults(this.query, this.pageIdx)
+    }, 250);
   }
 
   handleUpdateResults(results) {

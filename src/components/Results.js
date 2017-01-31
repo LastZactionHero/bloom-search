@@ -41,7 +41,7 @@ class Results extends React.Component {
           </thead>
           <tbody>
           {this.state.results.plants.map( (plant) => {
-              return <tr>
+              return <tr key={'plant_result_' + plant.id}>
                 <td>{plant.common_name}</td>
                 <td>{plant.size.avg_height}&quot;</td>
                 <td>{plant.size.avg_width}&quot;</td>

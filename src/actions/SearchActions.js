@@ -9,8 +9,8 @@ class SearchActions {
     return null;
   }
 
-  fetchResults(query) {
-    SearchSource.fetchResults(query).then( (results) => {
+  fetchResults(query, pageIdx) {
+    SearchSource.fetchResults(query, pageIdx).then( (results) => {
       this.updateResults(results);
     });
     return null;
@@ -18,6 +18,10 @@ class SearchActions {
 
   updateOptions(options) {
     return options;
+  }
+
+  updatePage(pageIdx) {
+    return pageIdx;
   }
 
   updateQuery(key, values) {

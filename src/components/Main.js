@@ -5,6 +5,7 @@ require('styles/App.css');
 import React from 'react';
 import SearchForm from './SearchForm';
 import Results from './Results';
+import ResultPages from './ResultPages';
 
 class AppComponent extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class AppComponent extends React.Component {
           </div>
           <div className='col-md-9'>
             <Results />
+            <ResultPages />
           </div>
         </div>
       </div>

@@ -13,14 +13,13 @@ export default {
     });
   },
 
-  fetchResults: (query) => {
-    console.log(query)
+  fetchResults: (query, pageIdx) => {
     return new Promise( (resolve) => {
       $.ajax({
         method: 'POST',
         url: API_HOST + '/search/query',
         contentType: 'application/json',
-        data: JSON.stringify({query: query})
+        data: JSON.stringify({page_idx: pageIdx, query: query})
       }).done((response) => {
         resolve(response);
       });

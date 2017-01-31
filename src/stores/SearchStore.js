@@ -6,10 +6,12 @@ class SeachStore {
     this.bindListeners({
       handleUpdateOptions: SearchActions.UPDATE_OPTIONS,
       handleUpdateQuery: SearchActions.UPDATE_QUERY,
-      handleUpdateResults: SearchActions.UPDATE_RESULTS
+      handleUpdateResults: SearchActions.UPDATE_RESULTS,
+      handleUpdatePage: SearchActions.UPDATE_PAGE
     });
 
     this.options = {};
+    this.pageIdx = 0;
     this.query = {
       common_name: '',
       leave_types: [],
@@ -25,7 +27,7 @@ class SeachStore {
       flower_attributes: []
     };
     this.results = {
-      meta: {page_idx: 0, total: 0},
+      meta: {page_idx: 0, total: 0, total_pages: 0},
       plants: []
     };
   }
@@ -45,12 +47,19 @@ class SeachStore {
     } else if(update.key == 'common_name') {
       this.query.common_name = update.values;
     }
+    this.pageIdx = 0;
 
-    setTimeout(() => {SearchActions.fetchResults(this.query)});
+    setTimeout(() => {SearchActions.fetchResults(this.query, this.pageIdx)});
   }
 
   handleUpdateResults(results) {
     this.results = results;
+  }
+
+  handleUpdatePage(pageIdx) {
+    this.pageIdx = pageIdx;
+
+    setTimeout(() => {SearchActions.fetchResults(this.query, this.pageIdx)});
   }
 }
 

@@ -13,6 +13,7 @@ import ZonesSelector from './search_form/ZonesSelector';
 import UsagesSelector from './search_form/UsagesSelector';
 import GardenStylesSelector from './search_form/GardenStylesSelector';
 import FlowerAttributesSelector from './search_form/FlowerAttributesSelector';
+import PlantTypeSelector from './search_form/PlantTypeSelector';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class SearchForm extends React.Component {
             className='form-control'
             onChange={this.handleCommonNameChange.bind(this)}/>
         </div>
+        <PlantTypeSelector />
         <FoliageColorsSelector />
         <FlowerAttributesSelector />
         <FlowerColorsSelector />

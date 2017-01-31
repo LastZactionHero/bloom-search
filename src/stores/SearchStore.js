@@ -7,7 +7,8 @@ class SeachStore {
       handleUpdateOptions: SearchActions.UPDATE_OPTIONS,
       handleUpdateQuery: SearchActions.UPDATE_QUERY,
       handleUpdateResults: SearchActions.UPDATE_RESULTS,
-      handleUpdatePage: SearchActions.UPDATE_PAGE
+      handleUpdatePage: SearchActions.UPDATE_PAGE,
+      handleClearQuery: SearchActions.CLEAR_QUERY
     });
 
     this.options = {};
@@ -35,6 +36,13 @@ class SeachStore {
 
   handleUpdateOptions(options) {
     this.options = options;
+  }
+
+  handleClearQuery(key) {
+    this.query[key] = [];
+    this.pageIdx = 0;
+
+    setTimeout(() => {SearchActions.fetchResults(this.query, this.pageIdx)});
   }
 
   handleUpdateQuery(update) {

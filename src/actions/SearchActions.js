@@ -16,6 +16,10 @@ class SearchActions {
     return null;
   }
 
+  clearQuery(key) {
+    return key;
+  }
+
   updateOptions(options) {
     return options;
   }

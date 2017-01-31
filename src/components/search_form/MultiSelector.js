@@ -29,15 +29,26 @@ class MultiSelector extends React.Component {
     this.setState({expanded: !this.state.expanded});
   }
 
+  activeFilters = () => {
+    let filterIds = this.state.query[this.optionsKey];
+    return filterIds.map((id) => { return this.state.options[this.optionsKey].find((item) => {return item.id == id}).name });
+  }
+
+  clearFilter = () => {
+    SearchActions.clearQuery(this.optionsKey);
+  }
+
   render() {
     return(
       <div className='form-group'>
-        <div>
-          <a href='javascript:void(0)' onClick={this.toggleExpand}>
-            {this.state.expanded ? '-' : '+'}
-          </a>
-          &nbsp;
-          <label>{this.fieldLabel}</label>
+        <div onClick={this.toggleExpand}>
+          <div>
+            <a href='javascript:void(0)'>
+              {this.state.expanded ? '-' : '+'}
+            </a>
+            &nbsp;
+            <label>{this.fieldLabel}</label>
+          </div>
         </div>
         {this.state.expanded ?
           <div className='btn-group-vertical clearfix' role='group'>
@@ -52,7 +63,10 @@ class MultiSelector extends React.Component {
                 </button>
               }) : <div></div>
             }
-          </div> : null
+          </div> : <div>
+            {this.activeFilters().map((filterName) => {return <span key={this.optionsKey + '_' + filterName}><span className='label label-success'>{filterName}</span>&nbsp;</span>})}
+            {this.activeFilters().length > 0 ? <a href='javascript:void(0)' onClick={this.clearFilter}>clear</a> : null}
+          </div>
         }
       </div>
     )

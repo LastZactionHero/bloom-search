@@ -8,7 +8,8 @@ class SeachStore {
       handleUpdateQuery: SearchActions.UPDATE_QUERY,
       handleUpdateResults: SearchActions.UPDATE_RESULTS,
       handleUpdatePage: SearchActions.UPDATE_PAGE,
-      handleClearQuery: SearchActions.CLEAR_QUERY
+      handleClearQuery: SearchActions.CLEAR_QUERY,
+      handleSelectPlant: SearchActions.SELECT_PLANT
     });
 
     this.options = {};
@@ -35,6 +36,7 @@ class SeachStore {
       plants: []
     };
     this.queryTimeout = null;
+    this.selectedPlant = null;
   }
 
   handleUpdateOptions(options) {
@@ -92,6 +94,10 @@ class SeachStore {
     this.pageIdx = pageIdx;
 
     setTimeout(() => {SearchActions.fetchResults(this.query, this.pageIdx)});
+  }
+
+  handleSelectPlant(plant) {
+    this.selectedPlant = plant;
   }
 }
 

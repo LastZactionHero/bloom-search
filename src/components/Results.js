@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchStore from '../stores/SearchStore';
+import SearchActions from '../actions/SearchActions';
 
 class Results extends React.Component {
   constructor(props) {
@@ -17,6 +18,10 @@ class Results extends React.Component {
 
   onChange = (state) => {
     this.setState(state);
+  }
+
+  selectPlant = (plant) => {
+    SearchActions.selectPlant(plant)
   }
 
   render = () => {
@@ -41,7 +46,7 @@ class Results extends React.Component {
           </thead>
           <tbody>
           {this.state.results.plants.map( (plant) => {
-              return <tr key={'plant_result_' + plant.id}>
+              return <tr className='plant' key={'plant_result_' + plant.id} onClick={() => {this.selectPlant(plant)}}>
                 <td>{plant.common_name}</td>
                 <td>{plant.size.avg_height}&quot;</td>
                 <td>{plant.size.avg_width}&quot;</td>

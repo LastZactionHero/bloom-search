@@ -6,8 +6,32 @@ import React from 'react';
 import SearchForm from './SearchForm';
 import Results from './Results';
 import ResultPages from './ResultPages';
+import PlantDetails from './PlantDetails';
+import SearchStore from '../stores/SearchStore';
+import SearchActions from '../actions/SearchActions';
 
 class AppComponent extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = SearchStore.getState();
+  }
+
+  componentDidMount = () => {
+    SearchStore.listen(this.onChange);
+  }
+
+  componentWillUnmount = () => {
+    SearchStore.unlisten(this.onChange);
+  }
+
+  onChange = (state) => {
+    this.setState(state)
+  }
+
+  clearSelectedPlant = () => {
+    SearchActions.selectPlant(null);
+  }
+
   render() {
     return (
       <div className='container'>
@@ -17,8 +41,16 @@ class AppComponent extends React.Component {
             <SearchForm />
           </div>
           <div className='col-md-9'>
-            <Results />
-            <ResultPages />
+            {this.state.selectedPlant ?
+              <div>
+                <a href='javascript:void(0)' onClick={this.clearSelectedPlant}>Back</a>
+                <PlantDetails plant={this.state.selectedPlant} />
+              </div>:
+              <div>
+                <Results />
+                <ResultPages />
+              </div>
+            }
           </div>
         </div>
       </div>

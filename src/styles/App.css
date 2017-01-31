@@ -27,3 +27,7 @@ input.dimension-range {
   width: 80px;
   display: inline-block;
 }
+
+tr.plant {
+  cursor: pointer;
+}

@@ -35,6 +35,10 @@ class SearchActions {
   updateResults(results) {
     return results;
   }
+
+  selectPlant(plant) {
+    return plant;
+  }
 }
 
 export default alt.createActions(SearchActions);

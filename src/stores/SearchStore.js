@@ -23,6 +23,7 @@ class SeachStore {
       flower_colors: [],
       foliage_colors: [],
       light_needs: [],
+      watering_needs: [],
       key_features: [],
       special_features: [],
       zones: [],
@@ -51,7 +52,7 @@ class SeachStore {
   }
 
   handleUpdateQuery(update) {
-    if(['plant_types', 'flower_attributes', 'garden_styles', 'usages', 'zones', 'special_features', 'key_features', 'light_needs', 'leave_types', 'growth_rates', 'flower_colors', 'foliage_colors'].indexOf(update.key) != -1 ) {
+    if(['plant_types', 'flower_attributes', 'garden_styles', 'usages', 'zones', 'special_features', 'key_features', 'watering_needs', 'light_needs', 'leave_types', 'growth_rates', 'flower_colors', 'foliage_colors'].indexOf(update.key) != -1 ) {
       let arrIndex = this.query[update.key].indexOf(update.values.id)
       if(arrIndex == -1) {
         this.query[update.key].push(update.values.id);

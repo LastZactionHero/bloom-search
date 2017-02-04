@@ -23,7 +23,7 @@ let config = Object.assign({}, baseConfig, {
       searchResolveModulesDirectories: false
     }),
     new webpack.DefinePlugin({
-     API_HOST: JSON.stringify('http://dev-fleur-search.develop.vodka:3000')
+     API_HOST: JSON.stringify('http://dev-search.plantwithbloom.com:3000')
    })
   ],
   module: defaultSettings.getDefaultModules()

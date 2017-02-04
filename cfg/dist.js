@@ -22,7 +22,7 @@ let config = Object.assign({}, baseConfig, {
       searchResolveModulesDirectories: false
     }),
     new webpack.DefinePlugin({
-      API_HOST: JSON.stringify('http://fleur-api.develop.vodka')
+      API_HOST: JSON.stringify('http://api-search.plantwithbloom.com')
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),

@@ -6,7 +6,7 @@ class NavStore {
     this.bindListeners({
       handleUpdatePage: NavActions.UPDATE_PAGE
     });
-    this.activePage = 'search';
+    this.activePage = 'template';
   }
 
   handleUpdatePage(page) {

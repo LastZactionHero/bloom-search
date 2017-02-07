@@ -3,6 +3,7 @@ import SearchForm from './SearchForm';
 import Results from './Results';
 import ResultPages from './ResultPages';
 import PlantDetails from './PlantDetails';
+import ActiveQuery from './ActiveQuery';
 import SearchStore from '../stores/SearchStore';
 import SearchActions from '../actions/SearchActions';
 
@@ -34,6 +35,8 @@ class PlantSearch extends React.Component {
         <h1>Plant Search Tool</h1>
         <div className='row'>
           <div className='col-md-3'>
+            <ActiveQuery />
+            <hr />
             <SearchForm />
           </div>
           <div className='col-md-9'>

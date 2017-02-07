@@ -31,7 +31,3 @@ input.dimension-range {
 tr.plant {
   cursor: pointer;
 }
-
-canvas#placementsCanvas {
-  border: 1px solid #000000;
-}

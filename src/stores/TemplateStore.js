@@ -13,7 +13,8 @@ class TemplateStore {
       handleSetConfig: TemplateActions.SET_CONFIG,
       handleSaveConfig: TemplateActions.SAVE_CONFIG,
       handleUpdateActiveTemplate: TemplateActions.UPDATE_ACTIVE_TEMPLATE,
-      handleNewTemplateCreated: TemplateActions.NEW_TEMPLATE_CREATED
+      handleNewTemplateCreated: TemplateActions.NEW_TEMPLATE_CREATED,
+      handleTemplateDeleted: TemplateActions.DELETE_TEMPLATE
     });
     this.templates = [];
     this.activeTemplate = null;
@@ -66,6 +67,11 @@ class TemplateStore {
   handleNewTemplateCreated(template) {
     this.templates.push(template);
     this.activeTemplate = template;
+  }
+
+  handleTemplateDeleted(template) {
+    this.templates.splice(this.templates.indexOf(template), 1);
+    this.activeTemplate = null;
   }
 }
 

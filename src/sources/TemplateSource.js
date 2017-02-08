@@ -103,5 +103,12 @@ export default {
         reject(xhr, textStatus, errorThrown);
       });
     });
+  },
+
+  deleteTemplate(template) {
+    $.ajax({
+      method: 'DELETE',
+      url: `${API_HOST}/bed_templates/${template.id}`
+    })
   }
 }

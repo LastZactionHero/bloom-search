@@ -60,6 +60,11 @@ class TemplateActions {
   newTemplateCreated(template) {
     return template;
   }
+
+  deleteTemplate(template) {
+    TemplateSource.deleteTemplate(template);
+    return template;
+  }
 }
 
 export default alt.createActions(TemplateActions);

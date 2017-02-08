@@ -53,10 +53,17 @@ class TemplateViewer extends React.Component {
     )
   }
 
+  deleteTemplate = () => {
+    if(confirm('Delete this template? This cannot be undone')){
+      TemplateActions.deleteTemplate(this.state.activeTemplate);
+    }
+  }
+
   render() {
     return(
       <div>
         <h3>{this.state.activeTemplate.name}</h3>
+        <div className='btn btn-danger' onClick={this.deleteTemplate}>Delete</div>
         <hr />
         <h4>Draw Preferences</h4>
         <div className='row'>

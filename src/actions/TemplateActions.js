@@ -49,6 +49,17 @@ class TemplateActions {
   updateActiveTemplate(template) {
     return template;
   }
+
+  createNewTemplate(name) {
+    TemplateSource.createNewTemplate(name).then( (template) => {
+      this.newTemplateCreated(template);
+    })
+    return null;
+  }
+
+  newTemplateCreated(template) {
+    return template;
+  }
 }
 
 export default alt.createActions(TemplateActions);

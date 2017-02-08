@@ -12,7 +12,8 @@ class TemplateStore {
       handleFetchPlacements: TemplateActions.FETCH_PLACEMENTS,
       handleSetConfig: TemplateActions.SET_CONFIG,
       handleSaveConfig: TemplateActions.SAVE_CONFIG,
-      handleUpdateActiveTemplate: TemplateActions.UPDATE_ACTIVE_TEMPLATE
+      handleUpdateActiveTemplate: TemplateActions.UPDATE_ACTIVE_TEMPLATE,
+      handleNewTemplateCreated: TemplateActions.NEW_TEMPLATE_CREATED
     });
     this.templates = [];
     this.activeTemplate = null;
@@ -60,6 +61,11 @@ class TemplateStore {
     let existingTemplate = this.templates.find((t) => {return t.id == template.id});
     let idx = this.templates.indexOf(existingTemplate);
     this.templates[idx] = template;
+  }
+
+  handleNewTemplateCreated(template) {
+    this.templates.push(template);
+    this.activeTemplate = template;
   }
 }
 

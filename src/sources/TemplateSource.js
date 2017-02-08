@@ -46,5 +46,62 @@ export default {
         reject(xhr, textStatus, errorThrown);
       });
     });
+  },
+
+  createNewTemplate(name) {
+    const config = {
+      size: {
+          design: {
+             width: 360,
+             height: 72
+          },
+          max: {
+             width: 9999,
+             height: 9999
+          },
+          min: {
+             width: 24,
+             height: 24
+          }
+       },
+       zones: [
+          '5'
+       ],
+       cell:  {
+         type: 'PlantGridCell',
+         width_percent: 1.0,
+         height_percent: 0.7,
+         plant: {
+            label: 'A',
+            width: 36,
+            horizontal_spacing: 0,
+            vertical_spacing: 0,
+            search_query: {
+
+            }
+         },
+         pattern: 'SingleRowPositionPattern',
+         tooltip: 'This is a great plant for all occasions.',
+         options: {
+
+         }
+      }
+    }
+    config.name = name;
+
+    return new Promise( (resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        url: `${API_HOST}/bed_templates`,
+        contentType: 'application/json',
+        data: JSON.stringify({
+          config: JSON.stringify(config)
+        })
+      }).done((response) => {
+        resolve(response);
+      }).fail((xhr, textStatus, errorThrown) => {
+        reject(xhr, textStatus, errorThrown);
+      });
+    });
   }
 }

@@ -8,6 +8,8 @@ class TemplateBuilder extends React.Component {
     super(props);
     this.state = TemplateStore.getState();
     TemplateActions.fetchTemplates();
+
+    this.state.newTemplateName = '';
   }
 
   componentDidMount = () => {
@@ -26,13 +28,36 @@ class TemplateBuilder extends React.Component {
     TemplateActions.setActiveTemplate(template);
   }
 
+  updateNewTemplateName = (element) => {
+    this.setState({newTemplateName: element.target.value});
+  }
+
+  createNewTemplate = () => {
+    if(this.state.newTemplateName.length > 0){
+      TemplateActions.createNewTemplate(this.state.newTemplateName);
+    }
+  }
+
   render = () => {
     return(
       <div>
         <h1>Template Builder</h1>
         <div className='row'>
           <div className='col-md-3'>
-            <div className='btn-group-vertical clearfix' role='group'>
+
+            <div className='row'>
+              <div className='col-xs-12'>
+                <h5>New Template</h5>
+                <div className='form-group'>
+                  <input type='text' className='form-control' placeholder='Title' value={this.state.newTemplateName} onChange={this.updateNewTemplateName} />
+                </div>
+                <button className='btn btn-success' onClick={this.createNewTemplate}>Create</button>
+              </div>
+            </div>
+
+            <hr/>
+            <h5>Select a Template</h5>
+            <div className='btn-group-vertical' role='group'>
               {this.state.templates.map( (template) => {
                 return <button
                   type='button'

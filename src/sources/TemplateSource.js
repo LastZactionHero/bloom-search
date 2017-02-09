@@ -95,7 +95,7 @@ export default {
         url: `${API_HOST}/bed_templates`,
         contentType: 'application/json',
         data: JSON.stringify({
-          config: JSON.stringify(config)
+          config: JSON.stringify(config, null, 4)
         })
       }).done((response) => {
         resolve(response);

@@ -40,6 +40,7 @@ class TemplateActions {
   }
 
   saveConfig(template) {
+    template.config = JSON.stringify(JSON.parse(template.config), null, 4);
     TemplateSource.saveConfig(template).then( (template) => {
       this.updateActiveTemplate(template);
     });

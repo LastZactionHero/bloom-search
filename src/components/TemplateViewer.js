@@ -89,7 +89,7 @@ class TemplateViewer extends React.Component {
         <a className='btn btn-success' href='javascript:void(0)' onClick={this.startDraw}>Draw It</a>
         <hr/>
         <h4>Bed Config</h4>
-        <div><textarea onChange={this.handleConfigChange.bind(this)} value={this.state.activeTemplate.config}></textarea></div>
+        <div><textarea onChange={this.handleConfigChange.bind(this)} value={this.state.activeTemplate.config} rows='10' cols='100'></textarea></div>
         <a className='btn btn-success' href='javascript:void(0)' onClick={this.saveConfig}>Update Config</a>
         <hr/>
         <div>

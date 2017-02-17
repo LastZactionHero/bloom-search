@@ -38,7 +38,7 @@ class AppComponent extends React.Component {
     }
 
     return (
-      <div>
+      <div className='main'>
         <Navbar />
           <div className='container'>
             { activePageEl }

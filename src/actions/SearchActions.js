@@ -49,6 +49,10 @@ class SearchActions {
     }
     return {plant: plant, favorite: favorite}
   }
+
+  queryStringChange(queryString) {
+    return queryString;
+  }
 }
 
 export default alt.createActions(SearchActions);

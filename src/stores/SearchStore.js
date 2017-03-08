@@ -10,7 +10,8 @@ class SeachStore {
       handleUpdatePage: SearchActions.UPDATE_PAGE,
       handleClearQuery: SearchActions.CLEAR_QUERY,
       handleSelectPlant: SearchActions.SELECT_PLANT,
-      handleToggleFavorite: SearchActions.TOGGLE_FAVORITE
+      handleToggleFavorite: SearchActions.TOGGLE_FAVORITE,
+      handleQueryStringChange: SearchActions.QUERY_STRING_CHANGE
     });
 
     this.options = {};
@@ -106,6 +107,17 @@ class SeachStore {
     const plant = options.plant;
     const favorite = options.favorite;
     plant.favorite = favorite;
+  }
+
+  handleQueryStringChange(queryString) {
+    try {
+      this.query = JSON.parse(queryString)
+      this.pageIdx = 0;
+      setTimeout(() => {SearchActions.fetchResults(this.query, this.pageIdx)});
+    } catch(err) {
+      alert('Invalid query string. Make sure you copied it correctly.')
+    }
+
   }
 }
 

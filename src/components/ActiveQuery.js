@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchStore from '../stores/SearchStore';
+import SearchActions from '../actions/SearchActions';
 
 class ActiveQuery extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class ActiveQuery extends React.Component {
   componentDidMount = () => {
     SearchStore.listen(this.onChange);
   }
-  
+
   componentWillUnmount = () => {
     SearchStore.unlisten(this.onChange);
   }
@@ -19,13 +20,18 @@ class ActiveQuery extends React.Component {
     this.setState(state);
   }
 
+  handleQueryStringChange = (event) => {
+    SearchActions.queryStringChange(event.target.value);
+  }
+
   render() {
     return(
       <div>
         <strong>Active Query</strong>
-        <pre>
-          {JSON.stringify(this.state.query)}
-        </pre>
+        <input type='text'
+               className='form-control'
+               value={JSON.stringify(this.state.query)}
+               onChange={this.handleQueryStringChange}/>
       </div>
     );
   }

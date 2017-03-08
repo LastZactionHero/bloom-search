@@ -24,12 +24,18 @@ class Results extends React.Component {
     SearchActions.selectPlant(plant)
   }
 
+  toggleFavorite = (plant) => {
+    plant.favorite = !plant.favorite;
+    SearchActions.toggleFavorite(plant, plant.favorite);
+  }
+
   render = () => {
     return(
       <div>
         <table className='table table-condensed table-striped results-table'>
           <thead>
           <tr>
+            <th>Favorite</th>
             <th>Common Name</th>
             <th>Avg Height, IN</th>
             <th>Avg Width, IN</th>
@@ -47,6 +53,9 @@ class Results extends React.Component {
           <tbody>
           {this.state.results.plants.map( (plant) => {
               return <tr className='plant' key={'plant_result_' + plant.id} onClick={() => {this.selectPlant(plant)}}>
+                <td onClick={ (e) => {e.stopPropagation(); this.toggleFavorite(plant);} }>
+                  <h4>{plant.favorite ? <i className='fa fa-star'></i> : <i className='fa fa-star-o'></i>}</h4>
+                </td>
                 <td>{plant.common_name}</td>
                 <td>{plant.size.avg_height}&quot;</td>
                 <td>{plant.size.avg_width}&quot;</td>

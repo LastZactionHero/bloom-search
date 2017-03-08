@@ -1,5 +1,6 @@
 import alt from '../alt';
 import SearchSource from '../sources/SearchSource';
+import PlantSource from '../sources/PlantSource';
 
 class SearchActions {
   fetchOptions() {
@@ -38,6 +39,15 @@ class SearchActions {
 
   selectPlant(plant) {
     return plant;
+  }
+
+  toggleFavorite(plant, favorite){
+    if(favorite){
+      PlantSource.favorite(plant);
+    } else {
+      PlantSource.unfavorite(plant);
+    }
+    return {plant: plant, favorite: favorite}
   }
 }
 

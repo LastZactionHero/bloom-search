@@ -9,7 +9,8 @@ class SeachStore {
       handleUpdateResults: SearchActions.UPDATE_RESULTS,
       handleUpdatePage: SearchActions.UPDATE_PAGE,
       handleClearQuery: SearchActions.CLEAR_QUERY,
-      handleSelectPlant: SearchActions.SELECT_PLANT
+      handleSelectPlant: SearchActions.SELECT_PLANT,
+      handleToggleFavorite: SearchActions.TOGGLE_FAVORITE
     });
 
     this.options = {};
@@ -99,6 +100,12 @@ class SeachStore {
 
   handleSelectPlant(plant) {
     this.selectedPlant = plant;
+  }
+
+  handleToggleFavorite(options) {
+    const plant = options.plant;
+    const favorite = options.favorite;
+    plant.favorite = favorite;
   }
 }
 

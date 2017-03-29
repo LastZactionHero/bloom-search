@@ -21,6 +21,7 @@ class TemplateStore {
     this.placementWidth = 360;
     this.placementHeight = 72;
     this.activePlacements = null;
+    this.activeConfig = null;
   }
 
   handleUpdateTemplates(templates) {
@@ -29,6 +30,13 @@ class TemplateStore {
 
   handleSetActiveTemplate(template) {
     this.activeTemplate = template;
+
+    // Update the draw size to the design size
+    this.activeConfig = JSON.parse(template.config);
+    if(this.activeConfig.size && this.activeConfig.size.design) {
+      this.placementWidth = this.activeConfig.size.design.width;
+      this.placementHeight = this.activeConfig.size.design.height;
+    }
   }
 
   handleSetPlacementWidth(width) {

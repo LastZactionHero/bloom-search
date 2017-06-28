@@ -6,6 +6,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import PlantSearch from './PlantSearch';
 import TemplateBuilder from './TemplateBuilder';
+import HeatmapBuilder from './heatmaps/HeatmapBuilder';
 import NavStore from '../stores/NavStore'
 
 class AppComponent extends React.Component {
@@ -34,6 +35,9 @@ class AppComponent extends React.Component {
         break;
       case 'template':
         activePageEl = <TemplateBuilder />;
+        break;
+      case 'heatmap_builder':
+        activePageEl = <HeatmapBuilder />;
         break;
     }
 

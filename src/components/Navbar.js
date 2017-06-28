@@ -44,6 +44,11 @@ class Navbar extends React.Component {
                   Template Builder
                 </a>
               </li>
+              <li className={this.state.activePage == 'heatmap_builder' ? 'active' : ''}>
+                <a href="javascript:void(0)"  onClick={() => {this.updatePage('heatmap_builder')}}>
+                  Heatmap Builder
+                </a>
+              </li>
             </ul>
           </div>
         </div>
